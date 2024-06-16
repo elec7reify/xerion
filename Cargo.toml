@@ -1,0 +1,26 @@
+[package]
+name = "xerion"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+async-trait = "0.1.80"
+serde_json = "1.0.117"
+serde = { version = "1.0.203", features = ["derive"] }
+tokio = { version = "1.38.0", features = ["fs", "test-util", "full"] }
+url = { version = "2.5.0", features = ["serde"] }
+reqwest = { version = "0.12.4", default-features = false, features = ["stream", "json"] }
+time = { version = "0.3.36", features = ["serde", "serde-well-known", "macros"] }
+time-macros = "0.2.18"
+oauth2 = { version = "4.4.2", default-features = false, features = ["reqwest"] }
+serde_with_macros = "3.8.1"
+futures = "0.3.30"
+pin-project-lite = "0.2.14"
+
+[dev-dependencies]
+tokio = { version = "1.38.0", features = ["test-util"] }
+
+[features]
+default = ["default_native_tls"]
+default_native_tls = ["oauth2/native-tls", "reqwest/native-tls"]
+arbitrary_precision = ["serde_json/arbitrary_precision"]
